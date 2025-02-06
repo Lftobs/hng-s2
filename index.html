@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-over" id="gameOver">
+        <div class="game-over-content">
+            <h2>GAME OVER!</h2>
+            <p>Your Score: <span id="finalScore">0</span></p>
+            <p>High Score: <span id="highScore">0</span></p>
+            <button class="restart-btn" onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+
+    <section class="game">
+        <header>
+            <h1>PAC-MAN COLOR CHALLENGE</h1>
+            <div class="score-container">
+                <span class="score" data-testid="score">SCORE: <span id="score">0</span></span>
+                <span class="score">HIGH SCORE: <span id="currentHighScore">0</span></span>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div id="pacman" data-testid="colorBox">
+                <div class="pacman-top"></div>
+                <div class="pacman-bottom"></div>
+            </div>
+            <div class="food"></div>
+            <div class="food two"></div>
+            <div class="food three"></div>
+        </div>
+        </div>
+
+        <div class="status">
+            <h2 class="guess"></h2>
+        </div>
+
+        <div class="instructions" data-testid="gsmeInstructions">
+            <h2>How to Play</h2>
+            <p>1. Watch the Pac-Man flash a color.</p>
+            <p>2. Select the matching color from the options below.</p>
+            <p>3. If you choose correctly, you earn points and the game continues.</p>
+            <p>4. If you choose incorrectly, the game is over.</p>
+            <p>5. Try to beat your high score!</p>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
