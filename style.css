@@ -309,6 +309,7 @@ h1 {
 
   .game {
     width: 90%;
+    scale: 1.3;
   }
 
   .container {
