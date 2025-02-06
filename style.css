@@ -1,231 +1,342 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+body {
+  background: #1a1a1a;
+  font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+}
 
-    body {
-        background: #1a1a1a;
-        font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
-    }
+.game {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #000 0%, #1a1a1a 100%);
+  padding: 1rem;
+}
 
-    .game {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        background: linear-gradient(45deg, #000 0%, #1a1a1a 100%);
-    }
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-    header {
-        position: absolute;
-        top: 2rem;
-        text-align: center;
-    }
+h1 {
+  color: #ffeb3b;
+  font-size: 2rem;
+  text-shadow: 0 0 15px rgba(255, 235, 59, 0.5);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
 
-    h1 {
-        color: #ffeb3b;
-        font-size: 3rem;
-        text-shadow: 0 0 15px rgba(255, 235, 59, 0.5);
-        margin-bottom: 1rem;
-        letter-spacing: 2px;
-    }
+.score-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
 
-    .score-container {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
+.score {
+  color: #fff;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
 
-    .score {
-        color: #fff;
-        font-size: 1.5rem;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 0.5rem 1.5rem;
-        border-radius: 30px;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  overflow: hidden;
+  border: 3px solid #333;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 30px rgba(255, 235, 59, 0.2);
+}
 
-    .container {
-        position: relative;
-        width: 400px;
-        height: 200px;
-        overflow: hidden;
-        scale: 1.3;
-        border: 3px solid #333;
-        border-radius: 15px;
-        background: rgba(0, 0, 0, 0.9);
-        box-shadow: 0 0 30px rgba(255, 235, 59, 0.2);
-    }
+#pacman {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 50px;
+  top: 75px;
+  z-index: 2;
+  filter: drop-shadow(0 0 5px rgba(255, 235, 59, 0.5));
+}
 
-    #pacman {
-        width: 50px;
-        height: 50px;
-        position: absolute;
-        left: 50px;
-        top: 75px;
-        z-index: 2;
-        filter: drop-shadow(0 0 5px rgba(255, 235, 59, 0.5));
-    }
+.pacman-top,
+.pacman-bottom {
+  background: grey;
+  height: 25px;
+  width: 50px;
+  border-radius: 25px 25px 0 0;
+  animation: chomp-top 0.4s infinite;
+  transform-origin: bottom;
+  transition: background-color 0.3s ease;
+}
 
-    .pacman-top {
-        background: grey;
-        height: 25px;
-        width: 50px;
-        border-radius: 25px 25px 0 0;
-        animation: chomp-top 0.4s infinite;
-        transform-origin: bottom;
-        transition: background-color 0.3s ease;
-    }
+.pacman-bottom {
+  border-radius: 0 0 25px 25px;
+  animation: chomp-bottom 0.4s infinite;
+  transform-origin: top;
+}
 
-    .pacman-bottom {
-        background: grey;
-        height: 25px;
-        width: 50px;
-        border-radius: 0 0 25px 25px;
-        animation: chomp-bottom 0.4s infinite;
-        transform-origin: top;
-        transition: background-color 0.3s ease;
-    }
+.food {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 100%;
+  position: absolute;
+  top: 95px;
+  left: 320px;
+  animation: move 3s linear infinite, float 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
 
-    .food {
-        width: 12px;
-        height: 12px;
-        background: #fff;
-        border-radius: 100%;
-        position: absolute;
-        top: 95px;
-        left: 320px;
-        animation: move 3s linear infinite, float 2s ease-in-out infinite;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-    }
+.two {
+  animation-delay: 180ms;
+  background-color: #ff4081;
+}
 
-    .two {
-        animation-delay: 180ms;
-        background-color: #ff4081;
-    }
+.three {
+  animation-delay: 360ms;
+  background-color: #00e676;
+}
 
-    .three {
-        animation-delay: 360ms;
-        background-color: #00e676;
-    }
+.color-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
 
-    .color-container {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        position: absolute;
-        bottom: 3rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    }
+.color-choice {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 3px solid transparent;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 
-    .color-choice {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        border: 3px solid transparent;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
+.color-choice:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
 
-    .color-choice:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    }
+.color-choice.selected {
+  border-color: white;
+  box-shadow: 0 0 15px currentColor;
+}
 
-    .color-choice.selected {
-        border-color: white;
-        box-shadow: 0 0 15px currentColor;
-    }
+@keyframes chomp-top {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 
-    @keyframes chomp-top {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(-35deg); }
-        100% { transform: rotate(0deg); }
-    }
+@keyframes chomp-bottom {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(35deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 
-    @keyframes chomp-bottom {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(35deg); }
-        100% { transform: rotate(0deg); }
-    }
+@keyframes move {
+  from {
+    left: 320px;
+  }
+  to {
+    left: 50px;
+  }
+}
 
-    @keyframes move {
-        from {left: 320px;}
-        to { left: 50px; }
-    }
+.paused {
+  animation-play-state: paused !important;
+}
 
-    .paused {
-        animation-play-state: paused !important;
-    }
+.wrong {
+  animation: wrongGuess 0.5s ease;
+}
 
-    .wrong {
-        animation: wrongGuess 0.5s ease;
-    }
+@keyframes wrongGuess {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+}
 
-    @keyframes wrongGuess {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(10px); }
-        75% { transform: translateX(-10px); }
-    }
+.game-over {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+}
 
-    .game-over {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        color: white;
-        text-align: center;
-    }
+.game-over-content {
+  background: #222;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 235, 59, 0.3);
+}
 
-    .game-over-content {
-        background: #222;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 0 30px rgba(255, 235, 59, 0.3);
-    }
+.restart-btn {
+  background: #ffeb3b;
+  color: #000;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
 
-    .restart-btn {
-        background: #ffeb3b;
-        color: #000;
-        border: none;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        border-radius: 30px;
-        cursor: pointer;
-        margin-top: 1rem;
-        transition: all 0.3s ease;
-    }
+.restart-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 235, 59, 0.5);
+}
 
-    .restart-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(255, 235, 59, 0.5);
-    }
-    .instructions {
-        color: white;
-        margin-top: 2.5rem;
-    }
-    .status {
-        display: block;
-        color: white;
-        margin-top: 2.5rem;
-    }
+.instructions {
+  color: white;
+  margin-top: 2rem;
+  text-align: center;
+  max-width: 600px;
+}
+
+.status {
+  color: white;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    height: 150px;
+  }
+
+  #pacman {
+    width: 40px;
+    height: 40px;
+    left: 40px;
+    top: 55px;
+  }
+
+  .pacman-top,
+  .pacman-bottom {
+    height: 20px;
+    width: 40px;
+  }
+
+  .food {
+    width: 10px;
+    height: 10px;
+    top: 70px;
+    left: 240px;
+  }
+
+  .color-choice {
+    width: 40px;
+    height: 40px;
+  }
+
+  .instructions {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .score {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    height: 120px;
+  }
+
+  #pacman {
+    width: 30px;
+    height: 30px;
+    left: 30px;
+    top: 45px;
+  }
+
+  .pacman-top,
+  .pacman-bottom {
+    height: 15px;
+    width: 30px;
+  }
+
+  .food {
+    width: 8px;
+    height: 8px;
+    top: 56px;
+    left: 180px;
+  }
+
+  .color-choice {
+    width: 35px;
+    height: 35px;
+  }
+
+  .instructions {
+    font-size: 0.8rem;
+  }
+}
