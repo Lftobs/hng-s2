@@ -96,7 +96,8 @@ function restartGame() {
     // Reset game state
     score = 0;
     isRestared = true;
-    document.querySelectorAll('.food').forEach((food, index) => {
+    window.location.reload()
+    /* document.querySelectorAll('.food').forEach((food, index) => {
         console.log(food.offsetWidth)
         const l = food.getBoundingClientRect()
         console.log(l.left)
@@ -106,7 +107,7 @@ function restartGame() {
     document.getElementById('score').textContent = '0';
     document.getElementById('gameOver').style.display = 'none';
     originalColor = colors[Math.floor(Math.random() * colors.length)];
-    flashOriginalColor();
+    flashOriginalColor();*/
 }
 
 function toggleAnimation() {
