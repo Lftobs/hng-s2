@@ -307,6 +307,10 @@ h1 {
     font-size: 0.9rem;
   }
 
+  .game {
+    width: 90%;
+  }
+
   .container {
     height: 120px;
   }
